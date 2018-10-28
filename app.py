@@ -13,11 +13,10 @@ from datetime import datetime, timedelta
 import math
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'static/voice'
-ALLOWED_EXTENSIONS = set(['wav'])
+
 
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 app.config['SECRET_KEY'] = '12345'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///omoine_com.db'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
