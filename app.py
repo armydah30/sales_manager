@@ -16,10 +16,10 @@ from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 app.config['SECRET_KEY'] = '12345'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///omoine_com.db'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
@@ -195,8 +195,6 @@ def manage_users():
     else:
         msg = 'No Users Found'
         return render_template('manage_users.html', msg=msg)
-
-
 
 #Add Sales
 @app.route('/add_sales', methods=['POST', 'GET'])
