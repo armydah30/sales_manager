@@ -8,23 +8,23 @@
    <ul class="list-group">
        <li class="list-group-item">
           <div class = "row">
-             <div class="col-sm-3 description">
+             <div class="col-sm-3 col-xs-3 description">
                <span>Product Category</span>
              </div>
-             <div class="col-sm-2 description">
+             <div class="col-sm-2 col-xs-2 description">
                <span>Description</span>
              </div>
-             <div class="col-sm-1 description">
+             <div class="col-sm-1 col-xs-1 description">
                <span>Quantity</span>
              </div>
-             <div class="col-sm-2 description">
+             <div class="col-sm-2 col-xs-2 description">
                <span>Unit Price</span>
              </div>
-             <div class="col-sm-2 description">
+             <div class="col-sm-2 col-xs-2 description">
                <span>Total Price</span>
              </div>
-             <div class="col-sm-2 description data-toggle="modal" data-target="#details_1"">
-               <span>Edit or Increase Stock</span>
+             <div class="col-sm-2 col-xs-2 description data-toggle="modal" data-target="#details_1"">
+               <span>Action</span>
              </div>
           </div>
         </li>
@@ -48,7 +48,7 @@
              <span>{{stock.total_price}}</span>
            </div>
            <div class="col-sm-2">
-             <span><a class="btn btn-dark" href="/edit_stock/{{stock.id}}">Edit or Increase </a></span>
+             <span><a class="btn btn-dark" href="/edit_stock/{{stock.id}}">Edit or Add </a></span>
            </div>
         </div>
       </li>

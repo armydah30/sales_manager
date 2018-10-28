@@ -16,7 +16,7 @@ from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 app.config['SECRET_KEY'] = '12345'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///omoine_com.db'
 
