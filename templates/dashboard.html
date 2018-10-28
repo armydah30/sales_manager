@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container-fluid">
+  <h1>Dashboard</h1>
+  <hr>
+  <ul class="list-group">
+      <li class="list-group-item">
+         <div class = "row">
+           The dashboard provides a few statistics and summary of important data within the application.
+         </div>
+      </li>
+      <li class="list-group-item">
+         <div class = "row">
+            <div class="col-sm-3 description dash-1 bg-success ">
+              <span style = "color: white; font-size:25px;">Current Stock</span>
+              <span style = "color: white; font-size:30px;">{{context.total_stock}} <small style = "font-size:15px;">products</small></span>
+            </div>
+            <br>
+            <div class="col-sm-3 description dash-2 bg-primary">
+              <span style = "color: white; font-size:25px;">Total Sales</span>
+              <span style = "color: white; font-size:30px;">{{context.total_sales}} <small style = "font-size:15px;">products</small></span>
+            </div>
+            <div class="col-sm-3 description dash-3 bg-danger">
+              <span style = "color: white; font-size:25px;">Total Revenue</span>
+              <span style = "color: white; font-size:30px;">{{context.total_revenue}} <small style = "font-size:15px;">NGN</small></span>
+            </div>
+            <div class="col-sm-3 description dash-4 bg-info">
+              <span style = "color: white; font-size:25px;">Total Profit</span>
+              <span style = "color: white; font-size:30px;">{{context.total_profit}} <small style = "font-size:15px;">NGN</small></span>
+            </div>
+         </div>
+      </li>
+      <li class="list-group-item">
+         <h3 class = "row">
+           Stock Breakdown
+         </h3>
+      </li>
+      <li class="list-group-item">
+         <div class = "row">
+            <div class="col-sm-3 description dash-1 bg-secondary ">
+              <span style = "color: white; font-size:25px;">Clothes</span>
+              <span style = "color: white; font-size:30px;">{{context.clothes}} <small style = "font-size:15px;">pieces</small></span>
+            </div>
+            <br>
+            <div class="col-sm-3 description dash-2 bg-secondary">
+              <span style = "color: white; font-size:25px;">Shoes</span>
+              <span style = "color: white; font-size:30px;">{{context.shoes}} <small style = "font-size:15px;">pieces</small></span>
+            </div>
+            <div class="col-sm-3 description dash-3 bg-secondary">
+              <span style = "color: white; font-size:25px;">Phones</span>
+              <span style = "color: white; font-size:30px;">{{context.phones}} <small style = "font-size:15px;">pieces</small></span>
+            </div>
+            <div class="col-sm-3 description dash-4 bg-secondary">
+              <span style = "color: white; font-size:25px;">Tablets</span>
+              <span style = "color: white; font-size:30px;">{{context.tablets}} <small style = "font-size:15px;">pieces</small></span>
+            </div>
+         </div>
+      </li>
+      <li class="list-group-item">
+        <h3>Sales History</h3>
+        <hr>
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>Product Name</th>
+                      <th>Category</th>
+                      <th>Quantity</th>
+                      <th>Sales Amount</th>
+                      <th>Profit</th>
+                      <th>Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for sale in context.sales %}
+                <tr>
+                    <td>{{sale.name}}</td>
+                    <td>{{sale.category}}</td>
+                    <td>{{sale.quantity}}</td>
+                    <td>{{sale.sales_amount}}</td>
+                    <td>{{sale.profit}}</td>
+                    <td>{{sale.create_date}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <th>Product Name</th>
+                      <th>Category</th>
+                      <th>Quantity</th>
+                      <th>Sales Amount</th>
+                      <th>Profit</th>
+                      <th>Date</th>
+                  </tr>
+              </tfoot>
+          </table>
+      </li>
+  </ul>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "lengthMenu": [ 10, 25, 50, 75, 100 ],
+        dom: 'Bfrtip',
+        buttons: [
+
+              { extend: 'copyHtml5', className: 'copyButton' },
+              { extend: 'excelHtml5', className: 'excelButton' },
+              { extend: 'csvHtml5', className: 'csvButton' }
+
+        ]
+    } );
+} );
+</script>
+{% endblock %}

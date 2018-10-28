@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+   <h1><small>Manage Users</small></h1>
+   <a class="btn btn-dark" href="/add_user">Add New User </a>
+   <hr>
+   <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td> {{user.id}} </td>
+      <td> {{user.name}} </td>
+      <td> {{user.username}} </td>
+      <td> {{user.email}} </td>
+    </tr>
+    {% endfor %}
+   </table>
+</div>
+{% endblock %}

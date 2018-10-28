@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  <h1>Products Sales</h1>
+  <hr>
+  <a class="btn btn-dark" href="/add_sales">Add New Sale </a>
+   <ul class="list-group">
+       <li class="list-group-item">
+          <div class = "row">
+             <div class="col-sm-3 description">
+               <span>Product</span>
+             </div>
+             <div class="col-sm-3 description">
+               <span>Quantity</span>
+             </div>
+             <div class="col-sm-3 description">
+               <span>Sales Amount</span>
+             </div>
+              <div class="col-sm-3 description">
+                <span>Date Added </span>
+              </div>
+          </div>
+        </li>
+    {% for sale in sales %}
+      <li class="list-group-item">
+        <div class = "row">
+           <div class="col-sm-3 description">
+             <span>{{sale.category}}</span>
+             <span>{{sale.name}}</span>
+           </div>
+           <div class="col-sm-3">
+             <span>{{sale.quantity}}</span>
+           </div>
+           <div class="col-sm-3">
+             <span>{{sale.sales_amount}}</span>
+           </div>
+           <div class="col-sm-3">
+             <span>{{sale.create_date}}</span>
+           </div>
+        </div>
+      </li>
+    {% endfor %}
+   </ul>
+</div>
+{% endblock %}

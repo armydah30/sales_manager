@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sales Manager</title>
+    <link rel="stylesheet" type = "text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename= 'plugins/font-awesome/css/font-awesome.min.css') }}">
+    <script type="text/javascript" src= "{{ url_for('static', filename= 'plugins/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename= 'plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename= 'plugins/font-awesome/css/font-awesome.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename= 'plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename= 'plugins/datatables-1.10.18/js/dataTables.buttons.html5.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename= 'plugins/datatables-1.10.18/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename= 'plugins/datatables-1.10.18/js/jquery.dataTables.min.js') }}"></script>
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename= 'plugins/datatables-1.10.18/css/jquery.datatables.css') }}">
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename= 'plugins/datatables-1.10.18/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="shortcut icon" href="/static/img/page_icon.png">
+
+
+  </head>
+
+  <body class = "bg-white">
+
+    {% include 'includes/_navbar.html' %}
+  </br>
+    <div class="" >
+      {% include 'includes/_messages.html' %}
+      {% block body %}
+      {% endblock %}
+    </div>
+
+  </body>
+
+</html>

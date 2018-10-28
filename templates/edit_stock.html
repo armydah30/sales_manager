@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% from "includes/_formhelpers.html" import render_field %}
+<div class="container-fluid message">
+  <h1>Edit Stock</h1>
+  <small>Update your stock here</small>
+  <hr>
+  <form method= "POST" action="">
+    <div class="form-group">
+      {{render_field(form.product_name, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.category, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.quantity, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.unit_price, class_="form-control")}}
+    </div>
+
+   <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+
+  </form>
+</div>
+{% endblock %}

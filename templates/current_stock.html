@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  <h1>Products Stock</h1>
+  <hr>
+  <a class="btn btn-dark" href="/add_stock">Add New Stock </a>
+   <ul class="list-group">
+       <li class="list-group-item">
+          <div class = "row">
+             <div class="col-sm-3 description">
+               <span>Product Category</span>
+             </div>
+             <div class="col-sm-2 description">
+               <span>Description</span>
+             </div>
+             <div class="col-sm-1 description">
+               <span>Quantity</span>
+             </div>
+             <div class="col-sm-2 description">
+               <span>Unit Price</span>
+             </div>
+             <div class="col-sm-2 description">
+               <span>Total Price</span>
+             </div>
+             <div class="col-sm-2 description data-toggle="modal" data-target="#details_1"">
+               <span>Edit or Increase Stock</span>
+             </div>
+          </div>
+        </li>
+    {% for stock in stocks %}
+      <li class="list-group-item">
+        <div class = "row">
+           <div class="col-sm-3 ">
+             <img class = "picture" src="/static/img/{{stock.category}}.jpg" alt="stock" />
+           </div>
+           <div class="col-sm-2 description">
+             <span>{{stock.category}}</span>
+             <span>{{stock.name}}</span>
+           </div>
+           <div class="col-sm-1">
+             <span>{{stock.quantity}}</span>
+           </div>
+           <div class="col-sm-2">
+             <span>{{stock.unit_price}}</span>
+           </div>
+           <div class="col-sm-2">
+             <span>{{stock.total_price}}</span>
+           </div>
+           <div class="col-sm-2">
+             <span><a class="btn btn-dark" href="/edit_stock/{{stock.id}}">Edit or Increase </a></span>
+           </div>
+        </div>
+      </li>
+    {% endfor %}
+   </ul>
+</div>
+{% endblock %}

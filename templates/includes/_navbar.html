@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Sales Manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          {% if session.logged_in %}
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Stock
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/add_stock">Add Stock</a>
+                <a class="dropdown-item" href="/current_stock">View Current Stock</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Sales
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/add_sales">Add Sales</a>
+                <a class="dropdown-item" href="/sales_history">View Sales History</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Manage
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/manage_users">Manage Users</a>
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item">  <a class="nav-link" href="/login">Login</a></li>
+          {% endif %}
+        </ul>
+
+        <ul class="navbar-nav navbar-left">
+          {% if session.logged_in %}
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+          {% endif %}
+        </ul>
+
+    </div>
+
+
+</nav>

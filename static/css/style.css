@@ -1,0 +1,159 @@
+
+.nav-link{
+  font-size: 14px;
+}
+
+.tales {
+  width: 100%;
+}
+.carousel-inner{
+  width:100%;
+  max-height: 400px !important;
+}
+
+.my-caption{
+  color: black !important;
+  text-align: center !important;
+}
+
+
+.my-caption2{
+  color: black !important;
+  text-align: center !important;
+}
+
+.list-group-item{
+color: black !important;
+}
+
+.mydrop{
+  margin-left: 15px;
+}
+
+.dropbtn {
+    border: 1px;
+    border-style: solid;
+    border-color: #2098BF;
+    cursor: pointer;
+		width: 200px;
+}
+.footer {
+  position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.row{
+ padding-right: 5px;
+}
+
+.dropdown-content {
+    color: black;
+    background-color: #f1f1f1;
+
+}
+
+
+
+.style-it{
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom: 100px;
+}
+.description {
+  padding-top: 10px;
+  width: 100px;
+}
+
+.description span {
+  display: block;
+  font-size: 14px;
+  color: #43484D;
+  font-weight: 700;
+}
+
+
+.description span:last-child {
+  font-weight: 400;
+  margin-top: 8px;
+  color: #86939E;
+}
+.bg-cover {
+        background-image: url('../img/dashboard.jpg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height:100px;
+        width:100%;
+    }
+
+.message{
+  text-align: center;
+  width:95%;
+  margin-left:auto;
+  margin-right:auto;
+  padding: 20px 40px 20px 40px;
+
+  border-color: white;
+  border-width: 1.5px;
+  background-color:white;
+  margin-bottom: 50px;
+}
+
+.nav-link {
+  color: #2098BF
+}
+.mystyle{
+   width: 100px;
+   margin-left:auto;
+   margin-right:auto;
+  padding-bottom:10px;
+}
+
+.dash-1{
+  width:100%;
+  height: 150px;
+  border-style: solid;
+  border-color: white;
+}
+
+.dash-2{
+  width:100%;
+  height: 150px;
+  border-style: solid;
+  border-color: white;
+}
+
+.dash-3{
+  width:100%;
+  height: 150px;
+  border-style: solid;
+  border-color: white;
+}
+
+.dash-4{
+  width:100%;
+  height: 150px;
+  border-style: solid;
+  border-color: white;
+}
+
+
+.jumbotron{
+  height: 350px;
+}
+
+.menu{
+  font-size: 12px;
+}
+
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}
