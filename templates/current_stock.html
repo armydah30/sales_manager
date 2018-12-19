@@ -48,7 +48,13 @@
              <span>{{stock.total_price}}</span>
            </div>
            <div class="col-sm-2">
-             <span><a class="btn btn-dark" href="/edit_stock/{{stock.id}}">Edit or Add </a></span>
+             <span><a class="btn btn-dark" href="/edit_stock/{{stock.id}}">Edit </a></span>
+             <span>
+               <form action="{{url_for('delete_stock', id=stock.id)}}" method ="post" >
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type ="submit" value ="Delete" class="btn btn-danger">
+               </form>
+             </span>
            </div>
         </div>
       </li>

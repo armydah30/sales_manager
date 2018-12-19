@@ -86,9 +86,25 @@ def dashboard():
     phones = 0
     tablets = 0
     others = 0
+    s_shoes = 0
+    s_clothes = 0
+    s_phones = 0
+    s_tablets = 0
+    s_others = 0
+
 
     for stock in all_stock:
         total_stock += stock.quantity
+        if stock.category == 'Shoes':
+            s_shoes += stock.quantity
+        if stock.category == 'Watches':
+            s_phones += stock.quantity
+        if stock.category == 'Perfumes':
+            s_tablets += stock.quantity
+        if stock.category == 'Clothes':
+            s_clothes += stock.quantity
+        if stock.category == 'Others':
+            s_others += stock.quantity
 
         print(total_stock)
     for sale in sales:
@@ -96,15 +112,15 @@ def dashboard():
         total_revenue += sale.sales_amount
         total_profit += sale.profit
         if sale.category == 'Shoes':
-            shoes += 1
+            shoes += sale.quantity
         if sale.category == 'Phones':
-            phones += 1
+            phones += sale.quantity
         if sale.category == 'Tablets':
-            tablets += 1
+            tablets += sale.quantity
         if sale.category == 'Clothes':
-            clothes += 1
+            clothes += sale.quantity
         if sale.category == 'Others':
-            others += 1
+            others += sale.quantity
 
 
     context = {
@@ -119,6 +135,11 @@ def dashboard():
             'phones': phones,
             'tablets': tablets,
             'others': others,
+            's_shoes': s_shoes,
+            's_clothes': s_clothes,
+            's_phones': s_phones,
+            's_tablets': s_tablets,
+            's_others': s_others,
 
             }
 
@@ -183,6 +204,30 @@ def login():
 
     return render_template('login.html')
 
+@app.route('/delete_stock/<string:id>', methods=['POST'])
+@is_logged_in
+def delete_stock(id):
+
+    stock = Stock.query.filter_by(id=id).one()
+    db.session.delete(stock)
+    db.session.commit()
+
+    flash('Stock Deleted', 'success')
+
+    return redirect(url_for('current_stock'))
+
+@app.route('/delete_user/<string:id>', methods=['POST'])
+@is_logged_in
+def delete_user(id):
+
+    user = Users.query.filter_by(id=id).one()
+    db.session.delete(user)
+    db.session.commit()
+
+    flash('User Deleted', 'success')
+
+    return redirect(url_for('users'))
+
 #Manage user
 @app.route('/manage_users')
 @is_logged_in
@@ -241,6 +286,7 @@ def sales(id):
             quantity = request.form['quantity']
             sales_amount = request.form['sales_amount']
             profit = int(sales_amount) - (cost_price * quantity_sold)
+            print(profit)
             #add sales to DB
             sales = Sales(name=product_name, category=category, quantity=quantity, profit=profit, sales_amount=sales_amount, create_date=datetime.now().date())
             db.session.add(sales)
@@ -263,12 +309,12 @@ def sales_history():
         return render_template('sales_history.html', sales=sales)
     else:
         msg = 'You Currently have NO Sales!'
-        return render_template('dashboard.html', msg=msg)
+        return render_template('home.html', msg=msg)
 
 #Stock form
 class StockForm(Form):
     product_name = TextAreaField('Product Name', [validators.Length(min=1)])
-    category = SelectField('Select a Product Category', choices=[(' ', ' '), ('Shoes', 'Shoes'), ('Bags', 'Bags'), ('Clothes', 'Clothes'), ('Phones', 'Phones'), ('Tablets', 'Tablets'), ('Others', 'Others')], validators=[validators.DataRequired()] )
+    category = SelectField('Select a Product Category', choices=[(' ', ' '), ('Shoes', 'Shoes'), ('Bags', 'Bags'), ('Clothes', 'Clothes'), ('Watches', 'Watches'), ('Perfumes', 'Perfumes'), ('Others', 'Others')], validators=[validators.DataRequired()] )
     quantity = IntegerField('How Many?', [validators.NumberRange(min=1)])
     unit_price = IntegerField('What is the Cost Per Product?', [validators.NumberRange(min=50)])
 
@@ -291,7 +337,7 @@ def add_stock():
 
         flash('New Stock Added', 'success')
 
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('current_stock'))
 
     return render_template('add_stock.html', form=form)
 
@@ -300,7 +346,7 @@ def add_stock():
 @is_logged_in
 def current_stock():
     #get all stock
-    stocks = Stock.query.all()
+    stocks = Stock.query.order_by(Stock.id.desc()).all()
 
     if len(stocks) > 0:
         return render_template('current_stock.html', stocks=stocks)
@@ -316,6 +362,13 @@ def edit_stock(id):
 
         #get form
         form = StockForm(request.form)
+
+        #ppulate stock form fields
+        form.product_name.data = stock.name
+        form.category.data = stock.category
+        form.quantity.data = stock.quantity
+        form.unit_price.data = stock.unit_price
+
 
         if request.method == 'POST' and form.validate():
             stock.name = request.form['product_name']
