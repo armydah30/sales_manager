@@ -113,9 +113,9 @@ def dashboard():
         total_profit += sale.profit
         if sale.category == 'Shoes':
             shoes += sale.quantity
-        if sale.category == 'Phones':
+        if sale.category == 'Watches':
             phones += sale.quantity
-        if sale.category == 'Tablets':
+        if sale.category == 'Perfumes':
             tablets += sale.quantity
         if sale.category == 'Clothes':
             clothes += sale.quantity
