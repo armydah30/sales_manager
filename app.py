@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session, logging
 import os
-from data import Rules
 from flask_sqlalchemy import SQLAlchemy
 from wtforms import Form, StringField, TextAreaField, IntegerField, PasswordField, SelectField, validators
 from flask_bcrypt import Bcrypt
@@ -19,6 +18,12 @@ app = Flask(__name__)
 app.debug = False
 app.config['SECRET_KEY'] = '12345'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///omoine_com.db'
+
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
