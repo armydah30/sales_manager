@@ -11,7 +11,7 @@ import time
 from datetime import datetime, timedelta
 import math
 from werkzeug.utils import secure_filename
-
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -19,13 +19,14 @@ app.debug = False
 app.config['SECRET_KEY'] = '12345'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///omoine_com.db'
 
-import psycopg2
-
-DATABASE_URL = os.environ['DATABASE_URL']
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# import psycopg2
+#
+# DATABASE_URL = os.environ['DATABASE_URL']
+#
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 
 #add Database Views
