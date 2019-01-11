@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session, logging
 import os
+from manage import app, db, Stock, Users, Sales
 from flask_sqlalchemy import SQLAlchemy
-from wtforms import Form, StringField, TextAreaField, IntegerField, PasswordField, SelectField, validators
 from flask_bcrypt import Bcrypt
+from wtforms import Form, StringField, TextAreaField, IntegerField, PasswordField, SelectField, validators
 from functools import wraps
 import requests
 import json
@@ -11,50 +12,12 @@ import time
 from datetime import datetime, timedelta
 import math
 from werkzeug.utils import secure_filename
-from flask_migrate import Migrate
-
-
-app = Flask(__name__)
-app.debug = False
-app.config['SECRET_KEY'] = '12345'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///omoine_com.db'
 
 import psycopg2
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-bcrypt = Bcrypt(app)
-
-#add Database Views
-class Stock(db.Model):
-    id =db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    category = db.Column(db.String(100), nullable=False)
-    quantity = db.Column(db.Integer, nullable=False)
-    unit_price = db.Column(db.Integer, nullable=False)
-    total_price = db.Column(db.Integer, nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False)
-
-class Sales(db.Model):
-    id =db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    category = db.Column(db.String(50), nullable=False)
-    quantity = db.Column(db.Integer, nullable=False)
-    profit = db.Column(db.Integer, nullable=False)
-    sales_amount = db.Column(db.Integer, nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False)
-
-class Users(db.Model):
-    id =db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-    password = db.Column(db.String(60), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False)
 
 
 #Check if user logged in
